@@ -1,4 +1,4 @@
-# Enterprise Computing Exercise 01
+# 💻 Enterprise Computing Exercise 01
 
 Socket programming code for Enterprise Computing Course.
 
