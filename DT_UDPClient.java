@@ -3,15 +3,20 @@ import java.net.*;
 
 public class DT_UDPClient {
     public static void main(String[] args) {
-        final int PORT = 1112;
+        final int SERVER_PORT = 1112;
         byte[] receiveData = new byte[1024];
+        byte[] sendData = new byte[1024];
 
         while(true) {
             try {
                 InetAddress IPAddress = InetAddress.getByName("localhost");
-                DatagramSocket clientSocket = new DatagramSocket(PORT);
+                DatagramSocket clientSocket = new DatagramSocket();
 
-                DatagramPacket receivedPacket = new DatagramPacket(receiveData, receiveData.length, IPAddress, PORT);
+                sendData = "Dummy".getBytes();
+                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, SERVER_PORT);
+                clientSocket.send(sendPacket);
+
+                DatagramPacket receivedPacket = new DatagramPacket(receiveData, receiveData.length);
                 // System.out.println("Waiting for receive data");
                 clientSocket.receive(receivedPacket);
 
