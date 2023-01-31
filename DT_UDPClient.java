@@ -8,10 +8,8 @@ public class DT_UDPClient {
         byte[] sendData = new byte[1024];
 
         while(true) {
-            try {
+            try (DatagramSocket clientSocket = new DatagramSocket()) {
                 InetAddress IPAddress = InetAddress.getByName("localhost");
-                DatagramSocket clientSocket = new DatagramSocket();
-
                 sendData = "Dummy".getBytes();
                 DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, SERVER_PORT);
                 clientSocket.send(sendPacket);
@@ -22,8 +20,6 @@ public class DT_UDPClient {
 
                 String recData = new String(receivedPacket.getData());
                 System.out.println("Receive: " + recData + " at " + receivedPacket.getAddress() + ":" + receivedPacket.getPort());
-                
-                clientSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
