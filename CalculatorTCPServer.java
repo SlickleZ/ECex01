@@ -18,7 +18,6 @@ public class CalculatorTCPServer {
             while(true) {
                 try {
                     Socket connSocket = welcomeSocket.accept();
-                    // welcomeSocket.close();
 
                     SocketThread sThread = new SocketThread(connSocket);
                     sThread.start();
