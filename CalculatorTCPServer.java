@@ -25,6 +25,11 @@ public class CalculatorTCPServer {
                 }
                 catch (IOException e) {
                     System.out.println("Cannot create this connection\nError: " + e.getMessage());
+                    try {
+                        welcomeSocket.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         }
