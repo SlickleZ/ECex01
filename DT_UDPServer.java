@@ -9,12 +9,12 @@ public class DT_UDPServer {
         try (DatagramSocket udpSocket = new DatagramSocket()) {
             byte[] sendData = new byte[1024];
 
-            System.out.println("Server is sending date to client connection at port number " + PORT);
             while (true) {
+                System.out.println("Server is sending date to client connection at port number " + PORT);
                 Date now = new Date();
                 String dateTimeFormat = now.toString();
                 sendData = dateTimeFormat.getBytes();
-                
+
                 InetAddress IPAddress = InetAddress.getByName("localhost");
                 DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, PORT);
                 udpSocket.send(sendPacket);
