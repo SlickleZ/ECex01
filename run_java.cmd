@@ -1,3 +1,6 @@
+:: Command to compile .java into ./out and run
+:: params: only one .java file name
+
 @echo off
 @color 0e
 @cls
