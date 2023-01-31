@@ -4,16 +4,16 @@ import java.net.*;
 public class CalculatorTCPServer {
         public static void main(String[] args) {
             ServerSocket welcomeSocket = null;
-            int port = 1112;
+            int PORT = 1112;
 
             try {
-                welcomeSocket = new ServerSocket(port);
+                welcomeSocket = new ServerSocket(PORT);
             } catch (IOException e) {
                 System.out.println("Welcome socket cannot be init.\nError: " + e.getMessage());
                 System.exit(1);
             }
             
-            System.out.println("The server is waiting for client connection at port number " + port);
+            System.out.println("The server is waiting for client connection at port number " + PORT);
             
             while(true) {
                 try {

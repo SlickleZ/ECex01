@@ -5,7 +5,8 @@ import java.util.*;
 
 public class CalculatorTCPClient {
     public static void main(String[] args) throws Exception {
-        int num1, num2, sum, port = 1112;
+        int num1, num2, sum;
+        int PORT = 1112;
         Scanner userListener = null;
         Scanner serverListener = null;
         Socket clientSocket = null;
@@ -15,7 +16,7 @@ public class CalculatorTCPClient {
             userListener = new Scanner(System.in);
 
             while(true) {
-                clientSocket = new Socket("localhost", port);
+                clientSocket = new Socket("localhost", PORT);
                 outputStream = new PrintStream(clientSocket.getOutputStream(), true);
                 serverListener = new Scanner(clientSocket.getInputStream());
 
