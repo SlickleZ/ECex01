@@ -9,36 +9,43 @@ public class CalculatorTCPClient {
         Scanner userListener = null;
         Scanner serverListener = null;
         Socket clientSocket = null;
-        DataOutputStream outputStream = null;
+        PrintStream outputStream = null;
         
         try {
             userListener = new Scanner(System.in);
-            clientSocket = new Socket("localhost", port);
-            outputStream = new DataOutputStream(clientSocket.getOutputStream());
-            serverListener = new Scanner(clientSocket.getInputStream());
 
             while(true) {
+                clientSocket = new Socket("localhost", port);
+                outputStream = new PrintStream(clientSocket.getOutputStream(), true);
+                serverListener = new Scanner(clientSocket.getInputStream());
+
                 System.out.print("Enter number 1 (To end just press enter): ");
-                num1 = userListener.nextInt();
+                num1 = Integer.parseInt(userListener.nextLine());
 
-                outputStream.writeInt(num1);
+                outputStream.println(num1);
+                // System.out.println("Message1 is out!");
 
-                if (serverListener.nextInt() == 1) {
-                    System.out.print("Enter number 2 (To end just press enter): ");
-                    num2 = userListener.nextInt();
-                    outputStream.writeInt(num2);
-                    
-                    sum = serverListener.nextInt();
-                    System.out.println("The result is " + sum);
-                }
+        
+                System.out.print("Enter number 2 (To end just press enter): ");
+                num2 = Integer.parseInt(userListener.nextLine());
+
+                outputStream.println(num2);
+                // System.out.println("Message2 is out!");
+                
+                sum = serverListener.nextInt();
+                System.out.println("The result is " + sum);
+                
+
+                if (clientSocket != null) { clientSocket.close(); }
             }
-        } catch (IOException e) {
-            System.out.println("Error occurred: Connection is lost from server.");
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Connection is lost from server.");
         } finally {
             try {
                 if (serverListener != null) { serverListener.close(); }
                 if (outputStream != null) { outputStream.close(); }
                 if (clientSocket != null) { clientSocket.close(); }
+                if (userListener != null) { userListener.close(); }
             } catch (IOException e) {
                 e.printStackTrace();
             }

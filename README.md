@@ -1,3 +1,4 @@
-# traditional_network_prog
-Sourcodes for demonstration concept of traditional network program that includes Socket, RPC, and RMI.
-This is the sourcecode accompany my Enterprise Computing Course.
+# Enterprise Computing Exercise 01
+
+Socket programming code exercise 1 for Enterprise Computing Course.
+Develop with Java, and Socket programming concept.

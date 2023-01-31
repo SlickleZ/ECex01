@@ -12,11 +12,11 @@ public class CalculatorTCPServer {
                 System.out.println("Welcome socket cannot be init.\nError: " + e.getMessage());
                 System.exit(1);
             }
-
+            
+            System.out.println("The server is waiting for client connection at port number " + port);
+            
             while(true) {
                 try {
-                    System.out.println("The server is waiting for client connection at port number " + port);
-                
                     Socket connSocket = welcomeSocket.accept();
                     // welcomeSocket.close();
 
@@ -25,7 +25,7 @@ public class CalculatorTCPServer {
                 }
                 catch (IOException e) {
                     System.out.println("Cannot create this connection\nError: " + e.getMessage());
-                } 
+                }
             }
         }
 }

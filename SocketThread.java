@@ -7,27 +7,29 @@ public class SocketThread extends Thread {
 
     private Socket connectionSocket;
 
-    SocketThread(Socket socket) {
+    public SocketThread(Socket socket) {
         this.connectionSocket = socket;
     }
 
     public void run() {
         Scanner messageInScanner = null;
-        DataOutputStream messageOutputStream = null;
+        PrintStream messageOutputStream = null;
 
         try {
             messageInScanner = new Scanner(connectionSocket.getInputStream());
-            messageOutputStream = new DataOutputStream(connectionSocket.getOutputStream());
+            messageOutputStream = new PrintStream(connectionSocket.getOutputStream(), true);
             
+            // System.out.println("Waiting for number 1");
             int num1 = messageInScanner.nextInt();
-            System.out.println(num1);
+            // System.out.println(num1);
 
-            messageOutputStream.writeInt(1);
-
+            // System.out.println("Waiting for number 2");
             int num2 = messageInScanner.nextInt();
-            System.out.println(num2);
-            messageOutputStream.writeInt(num1 + num2);
-        } catch (IOException | InputMismatchException e) {
+            // System.out.println(num2);
+
+            messageOutputStream.println(num1 + num2);
+            // System.out.println("respond (sum) is send");
+        } catch (IOException | NoSuchElementException e) {
             System.out.println("Closing socket connection\nErr: " + e.getMessage());
         } finally {
             try {
