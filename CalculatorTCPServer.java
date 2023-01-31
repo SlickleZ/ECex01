@@ -4,7 +4,7 @@ import java.net.*;
 public class CalculatorTCPServer {
         public static void main(String[] args) {
             ServerSocket welcomeSocket = null;
-            int PORT = 1112;
+            final int PORT = 1112;
 
             try {
                 welcomeSocket = new ServerSocket(PORT);

@@ -6,12 +6,12 @@ import java.util.*;
 public class CalculatorTCPClient {
     public static void main(String[] args) throws Exception {
         int num1, num2, sum;
-        int PORT = 1112;
+        final int PORT = 1112;
         Scanner userListener = null;
         Scanner serverListener = null;
         Socket clientSocket = null;
         PrintStream outputStream = null;
-        
+
         try {
             userListener = new Scanner(System.in);
 
