@@ -35,18 +35,15 @@ public class CalculatorTCPClient {
                 
                 sum = serverListener.nextInt();
                 System.out.println("The result is " + sum);
+
+                if (clientSocket != null) { clientSocket.close(); }
             }
         } catch (IOException | NumberFormatException e) {
             System.out.println("Connection is lost from server.");
         } finally {
-            try {
-                if (serverListener != null) { serverListener.close(); }
-                if (outputStream != null) { outputStream.close(); }
-                if (clientSocket != null) { clientSocket.close(); }
-                if (userListener != null) { userListener.close(); }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            if (serverListener != null) { serverListener.close(); }
+            if (outputStream != null) { outputStream.close(); }
+            if (userListener != null) { userListener.close(); }
         }
     }
 }
